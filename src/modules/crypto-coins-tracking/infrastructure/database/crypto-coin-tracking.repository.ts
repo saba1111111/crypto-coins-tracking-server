@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { LessThanOrEqual, Repository } from 'typeorm';
 import { CryptoCoinTrackingEntity } from './crypto-coin-tracking.entity';
 import { CryptoCoinData } from '../../domain/entities/crypto-coin-data.entity';
 import { CryptoCoinsTrackingRepository } from '../../domain/repositories/cryptoCoinsTracking.repository';
+import { CryptoCoins } from '../../domain/entities/crypto-coins.enum';
 
 @Injectable()
 export class CryptoCoinsTrackingTypeormRepository
@@ -24,5 +25,31 @@ export class CryptoCoinsTrackingTypeormRepository
     );
 
     await this.repo.save(records);
+  }
+
+  async getCryptoCoinFromDate(
+    coin: string,
+    daysAgo: number,
+  ): Promise<CryptoCoinData | null> {
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() - daysAgo);
+
+    const result = await this.repo.findOne({
+      where: {
+        coin,
+        timestamp: LessThanOrEqual(targetDate),
+      },
+      order: {
+        timestamp: 'DESC',
+      },
+    });
+
+    if (!result) return null;
+
+    return new CryptoCoinData(
+      result.coin as CryptoCoins,
+      result.priceUsd,
+      result.timestamp,
+    );
   }
 }
