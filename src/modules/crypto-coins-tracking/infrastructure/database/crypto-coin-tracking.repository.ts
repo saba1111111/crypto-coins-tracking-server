@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CryptoCoinsTrackingRepository } from 'src/crypto-coins-tracking/domain/repositories/cryptoCoinsTracking.repository';
 import { Repository } from 'typeorm';
 import { CryptoCoinTrackingEntity } from './crypto-coin-tracking.entity';
-import { CryptoCoinData } from 'src/crypto-coins-tracking/domain/entities/crypto-coin-data.entity';
+import { CryptoCoinData } from '../../domain/entities/crypto-coin-data.entity';
+import { CryptoCoinsTrackingRepository } from '../../domain/repositories/cryptoCoinsTracking.repository';
 
 @Injectable()
 export class CryptoCoinsTrackingTypeormRepository

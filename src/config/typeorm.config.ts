@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
-import { CryptoCoinTrackingEntity } from 'src/crypto-coins-tracking/infrastructure/database/crypto-coin-tracking.entity';
+import { CryptoCoinTrackingEntity } from 'src/modules/crypto-coins-tracking/infrastructure/database/crypto-coin-tracking.entity';
 
 export const getTypeOrmConfig = (
   configService: ConfigService,

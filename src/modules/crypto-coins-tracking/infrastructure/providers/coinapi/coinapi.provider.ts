@@ -1,11 +1,11 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
-import { CryptoCoinData } from 'src/crypto-coins-tracking/domain/entities/crypto-coin-data.entity';
-import { CryptoCoins } from 'src/crypto-coins-tracking/domain/entities/crypto-coins.enum';
-import { CryptoCoinsTrackingProviderService } from 'src/crypto-coins-tracking/domain/services/crypto-coins-tracking-provider.service';
 import { CoinPaiCryptoCoin } from './coinapi-response.dto';
 import { ConfigService } from '@nestjs/config';
+import { CryptoCoinsTrackingProviderService } from 'src/modules/crypto-coins-tracking/domain/services/crypto-coins-tracking-provider.service';
+import { CryptoCoins } from 'src/modules/crypto-coins-tracking/domain/entities/crypto-coins.enum';
+import { CryptoCoinData } from 'src/modules/crypto-coins-tracking/domain/entities/crypto-coin-data.entity';
 
 @Injectable()
 export class CoinapiProvider implements CryptoCoinsTrackingProviderService {

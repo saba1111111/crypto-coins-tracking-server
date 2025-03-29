@@ -1,11 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CryptoCoins } from 'src/crypto-coins-tracking/domain/entities/crypto-coins.enum';
-import { CryptoCoinsTrackingRepository } from 'src/crypto-coins-tracking/domain/repositories/cryptoCoinsTracking.repository';
-import { RepositoryTokens } from 'src/crypto-coins-tracking/domain/repositories/repository-tokens';
-import { CryptoCoinsTrackingProviderService } from 'src/crypto-coins-tracking/domain/services/crypto-coins-tracking-provider.service';
-import { NotificationProviderService } from 'src/crypto-coins-tracking/domain/services/notification-provider.service';
-import { ServiceTokens } from 'src/crypto-coins-tracking/domain/services/service-tokens';
+
 import { CryptoNotificationFormatter } from '../formatters/crypto-notification.formatter';
+import { RepositoryTokens } from '../../domain/repositories/repository-tokens';
+import { CryptoCoinsTrackingRepository } from '../../domain/repositories/cryptoCoinsTracking.repository';
+import { CryptoCoinsTrackingProviderService } from '../../domain/services/crypto-coins-tracking-provider.service';
+import { NotificationProviderService } from '../../domain/services/notification-provider.service';
+import { ServiceTokens } from '../../domain/services/service-tokens';
+import { CryptoCoins } from '../../domain/entities/crypto-coins.enum';
 
 @Injectable()
 export class TrackCryptoCoinsUseCase {

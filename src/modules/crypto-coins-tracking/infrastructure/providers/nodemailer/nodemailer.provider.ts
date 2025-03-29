@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
-import { NotificationProviderService } from 'src/crypto-coins-tracking/domain/services/notification-provider.service';
+import { NotificationProviderService } from 'src/modules/crypto-coins-tracking/domain/services/notification-provider.service';
 
 @Injectable()
 export class NodeMailerProvider implements NotificationProviderService {
