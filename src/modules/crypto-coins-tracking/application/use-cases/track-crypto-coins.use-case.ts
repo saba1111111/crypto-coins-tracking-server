@@ -10,7 +10,6 @@ import { CryptoCoinsTrackingProviderService } from '../../domain/services/crypto
 import { NotificationProviderService } from '../../domain/services/notification-provider.service';
 import { ServiceTokens } from '../../domain/services/service-tokens';
 import { CryptoCoins } from '../../domain/entities/crypto-coins.enum';
-import { CryptoTrendCalculator } from '../../domain/services/crypto-trend-calculator.service';
 import { CryptoCoinData } from '../../domain/entities/crypto-coin-data.entity';
 
 @Injectable()
@@ -65,24 +64,9 @@ export class TrackCryptoCoinsUseCase {
       result.push({
         name: coin.name,
         price: current,
-        trend1d: price1d
-          ? CryptoTrendCalculator.percentageDifference(
-              current,
-              price1d.priceInUSD,
-            )
-          : undefined,
-        trend7d: price7d
-          ? CryptoTrendCalculator.percentageDifference(
-              current,
-              price7d.priceInUSD,
-            )
-          : undefined,
-        trend30d: price30d
-          ? CryptoTrendCalculator.percentageDifference(
-              current,
-              price30d.priceInUSD,
-            )
-          : undefined,
+        trend1d: price1d ? price1d.priceInUSD : undefined,
+        trend7d: price7d ? price7d.priceInUSD : undefined,
+        trend30d: price30d ? price30d.priceInUSD : undefined,
       });
     }
 

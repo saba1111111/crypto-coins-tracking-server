@@ -1,3 +1,5 @@
+import { CryptoTrendCalculator } from '../../domain/services/crypto-trend-calculator.service';
+
 export type CoinWithTrend = {
   name: string;
   price: number;
@@ -13,12 +15,16 @@ export class CryptoNotificationFormatter {
         const emoji = '🪙';
         const price = `$${coin.price.toLocaleString()}`;
 
-        const trendLine = (label: string, percent?: number): string | null => {
-          if (percent === undefined || percent === null) return null;
+        const trendLine = (label: string, oldPrice?: number): string | null => {
+          if (oldPrice === undefined || oldPrice === null) return null;
 
+          const percent = CryptoTrendCalculator.percentageDifference(
+            coin.price,
+            oldPrice,
+          );
           const sign = percent > 0 ? '▲' : percent < 0 ? '▼' : '→';
           const signPrefix = percent > 0 ? '+' : '';
-          return `• ${label}: ${sign} ${signPrefix}${percent.toFixed(1)}%`;
+          return `• ${label}: ${sign} ${signPrefix}${percent.toFixed(1)}% ($${oldPrice.toLocaleString()})`;
         };
 
         const lines = [
