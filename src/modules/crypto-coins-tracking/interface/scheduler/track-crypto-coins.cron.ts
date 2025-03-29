@@ -6,9 +6,7 @@ import { TrackCryptoCoinsUseCase } from '../../application/use-cases/track-crypt
 export class TrackCryptoCoinsCron {
   constructor(private readonly trackPriceUseCase: TrackCryptoCoinsUseCase) {}
 
-  @Cron('0 0 * * *', {
-    timeZone: 'Asia/Tbilisi',
-  })
+  @Cron('0 21 * * *')
   async handleCron() {
     console.log('Running cron job...');
     await this.trackPriceUseCase.execute();
