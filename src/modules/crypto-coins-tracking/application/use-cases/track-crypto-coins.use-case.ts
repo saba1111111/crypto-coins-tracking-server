@@ -29,7 +29,7 @@ export class TrackCryptoCoinsUseCase {
       const coinsWithTrends = await this.buildCoinsWithTrend(coins);
       const message =
         CryptoNotificationFormatter.formatWithTrends(coinsWithTrends);
-      await this.sendNotification(message);
+      await this.sendNotifications(message);
     } catch (error) {
       console.error(error);
     }
@@ -73,11 +73,22 @@ export class TrackCryptoCoinsUseCase {
     return result;
   }
 
-  private async sendNotification(message: string): Promise<void> {
-    await this.notifier.notify({
-      to: 'sabapachulia123@gmail.com',
-      topic: 'Hi Champ, daily crypto coins data. Great day! :)',
-      message,
-    });
+  private async sendNotifications(message: string): Promise<void> {
+    const recipients = [
+      {
+        to: 'sabapachulia123@gmail.com',
+        topic: 'Morning Champ, Daily crypto coins data.',
+      },
+      {
+        to: 'sichinavailia@gmail.com',
+        topic: 'Morning Champ, Daily crypto coins data.',
+      },
+    ];
+
+    await Promise.all(
+      recipients.map(({ to, topic }) =>
+        this.notifier.notify({ to, topic, message }),
+      ),
+    );
   }
 }
