@@ -6,7 +6,7 @@ import { TrackCryptoCoinsUseCase } from '../../application/use-cases/track-crypt
 export class TrackCryptoCoinsCron {
   constructor(private readonly trackPriceUseCase: TrackCryptoCoinsUseCase) {}
 
-  @Cron('0 6 * * *', {
+  @Cron('0 9 * * *', {
     timeZone: 'Asia/Tbilisi',
   })
   async handleCron() {
