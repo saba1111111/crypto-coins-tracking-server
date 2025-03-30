@@ -13,7 +13,7 @@ export class CryptoNotificationFormatter {
     return coins
       .map((coin) => {
         const emoji = '🪙';
-        const price = `$${coin.price.toLocaleString()}`;
+        const price = `$${Math.floor(coin.price).toLocaleString()}`;
 
         const trendLine = (label: string, oldPrice?: number): string | null => {
           if (oldPrice === undefined || oldPrice === null) return null;
@@ -24,7 +24,9 @@ export class CryptoNotificationFormatter {
           );
           const sign = percent > 0 ? '▲' : percent < 0 ? '▼' : '→';
           const signPrefix = percent > 0 ? '+' : '';
-          return `• ${label}: ${sign} ${signPrefix}${percent.toFixed(1)}% ($${oldPrice.toLocaleString()})`;
+          const oldPriceFormatted = `$${Math.floor(oldPrice).toLocaleString()}`;
+
+          return `• ${label}: ${sign} ${signPrefix}${percent.toFixed(1)}% (${oldPriceFormatted})`;
         };
 
         const lines = [
