@@ -83,6 +83,10 @@ export class TrackCryptoCoinsUseCase {
         to: 'sichinavailia@gmail.com',
         topic: 'Morning Champ, Daily crypto coins data.',
       },
+      {
+        to: 'tata.pachulia@gmail.com',
+        topic: 'Morning Champ, Daily crypto coins data.',
+      },
     ];
 
     await Promise.all(
